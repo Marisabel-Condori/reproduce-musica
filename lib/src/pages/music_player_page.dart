@@ -10,10 +10,37 @@ class MusicPlayerPage extends StatelessWidget {
         child: Column(
           children: [
             CustomAppBarWidget(),
-            _ImagenDiscoDuracion()
+            _ImagenDiscoDuracion(),
+            _TituloPlay()
           ],
         ),
       )
+    );
+  }
+}
+
+class _TituloPlay extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            children: [
+              Text('Far Away', style: TextStyle(fontSize: 30.0, color: Colors.white.withOpacity(0.8)),),
+              Text('-Breaking Benjamin-', style: TextStyle(fontSize: 15.0, color: Colors.white.withOpacity(0.5)),)
+            ],
+          ),
+          FloatingActionButton(
+            backgroundColor: Color(0xffF8CB58),
+            child: Icon(Icons.play_arrow),
+            onPressed: (){}
+          )
+        ],
+      ),
     );
   }
 }
