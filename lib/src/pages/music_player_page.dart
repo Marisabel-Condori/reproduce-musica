@@ -23,9 +23,46 @@ class _ImagenDiscoDuracion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        _ImagenDisco()
+        _ImagenDisco(),
+        _BarraProgreso(),
       ],
+    );
+  }
+}
+
+class _BarraProgreso extends StatelessWidget {
+  const _BarraProgreso({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Text('00:00'),
+          SizedBox(height: 10.0,),
+          Stack(
+            children: [
+              Container(
+                width: 3.0, height: 250.0,
+                color: Colors.white.withOpacity(0.1),
+              ),
+              Positioned(
+                bottom: 0,
+                child: Container(
+                  width: 3.0, height: 150.0,
+                  color: Colors.white.withOpacity(0.8),
+                ),
+              )
+            ],
+          ),
+          SizedBox(height: 10.0,),
+          Text('00:00')
+        ],
+      ),
     );
   }
 }
