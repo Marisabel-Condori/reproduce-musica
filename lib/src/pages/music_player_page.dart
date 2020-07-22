@@ -1,7 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/src/helpel/helpers.dart';
+import 'package:music_player/src/model/audio_player_model.dart';
 import 'package:music_player/src/widgets/custom_appbar.dart';
+import 'package:provider/provider.dart';
 
 class MusicPlayerPage extends StatelessWidget {
 
@@ -107,12 +109,15 @@ class __TituloPlayState extends State<_TituloPlay> with SingleTickerProviderStat
               icon: AnimatedIcons.play_pause, 
               progress: playAnimation),
             onPressed: (){
+              final audioPlayerModel = Provider.of<AudioPlayerModel>(context, listen: false);
               if (this.isPlaying) {
                 playAnimation.reverse();
                 this.isPlaying = false;
+                audioPlayerModel.controller.stop();
               }else{
                 playAnimation.forward();
                 this.isPlaying = true;
+                audioPlayerModel.controller.repeat();
               }
             }
           )
@@ -175,6 +180,7 @@ class _ImagenDisco extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final audioPlayerModel = Provider.of<AudioPlayerModel>(context);
     return Container(
       padding: EdgeInsets.all(20.0),
       width: 250.0, height: 250.0,
@@ -186,6 +192,8 @@ class _ImagenDisco extends StatelessWidget {
             SpinPerfect(
               duration: Duration(seconds: 10),
               infinite: true,
+              manualTrigger: true,
+              controller: (animationController) => audioPlayerModel.controller = animationController,
               child: Image(image: AssetImage('assets/aurora.jpg'))
             ),
             Container(
