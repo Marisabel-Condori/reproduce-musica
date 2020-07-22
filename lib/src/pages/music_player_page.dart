@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/src/helpel/helpers.dart';
 import 'package:music_player/src/widgets/custom_appbar.dart';
@@ -182,7 +183,11 @@ class _ImagenDisco extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Image(image: AssetImage('assets/aurora.jpg')),
+            SpinPerfect(
+              duration: Duration(seconds: 10),
+              infinite: true,
+              child: Image(image: AssetImage('assets/aurora.jpg'))
+            ),
             Container(
               width: 25.0, height: 25.0,
               decoration: BoxDecoration(
